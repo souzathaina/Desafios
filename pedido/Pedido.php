@@ -1,60 +1,72 @@
-Formulário com nome do produto, quantidade, preço unitário
-e tipo de cliente (normal ou premium). A classe deve
-calcular:
-
-Habilidades:
-Operações matemáticas com formatação
-Estrutura condicional
-Encapsulamento
 <?php
 class Pedido
 {
     private string $nome;
     private int $quantidade;
     private float $precoUnitario;
-    private boolean $clientePremium;
+    private bool $clientePremium;
 
-    public function __construct(string $nome, int $quantidade, $precoUnitario, boolean $clientePremium)
+    public function __construct(string $nome, int $quantidade, float $precoUnitario, bool $clientePremium)
     {
         $this->nome = $nome;
         $this->quantidade = $quantidade;
         $this->precoUnitario = $precoUnitario;
         $this->clientePremium = $clientePremium;
     }
-    public function getNome()
+
+    public function getNome(): string
     {
         return $this->nome;
     }
 
-    public function getQuantidade()
+    public function getQuantidade(): int
     {
         return $this->quantidade;
     }
-    public function getPrecoUnitario()
+
+    public function getPrecoUnitario(): float
     {
         return $this->precoUnitario;
     }
-    public function getCliente()
+
+    public function getClientePremium(): bool
     {
         return $this->clientePremium;
     }
-    /*Total bruto
-    Desconto (ex: 10% se for premium)
-    Imposto (simples de 8%)
-    Total final
-        */
-    public function totalBruto()
+
+    public function calcularTotalBruto(): float
     {
         return $this->quantidade * $this->precoUnitario;
     }
 
-    public function desconto()
+    public function calcularDesconto(): float
     {
-        if ($this->clientePremium) {
-            return $this->totalBruto() * 0.10;//10% de desconto
-        } else {
-            return 0;
-        }
+        return $this->clientePremium ? $this->calcularTotalBruto() * 0.10 : 0;
+    }
 
+    public function calcularImposto(): float
+    {
+        return $this->calcularTotalBruto() * 0.08;
+    }
+
+    public function calcularTotal(): float
+    {
+        return $this->calcularTotalBruto() - $this->calcularDesconto() + $this->calcularImposto();
+    }
+
+    public function exibirDetalhes(): string
+    {
+        return "
+        <ul>
+            <li>Produto: {$this->getNome()}</li>
+            <li>Quantidade: {$this->getQuantidade()}</li>
+            <li>Preço Unitário: R$ " . number_format($this->getPrecoUnitario(), 2, ',', '.') . "</li>
+            <li>Cliente Premium: " . ($this->getClientePremium() ? "Sim" : "Não") . "</li>
+            <li>Total Bruto: R$ " . number_format($this->calcularTotalBruto(), 2, ',', '.') . "</li>
+            <li>Desconto: R$ " . number_format($this->calcularDesconto(), 2, ',', '.') . "</li>
+            <li>Imposto: R$ " . number_format($this->calcularImposto(), 2, ',', '.') . "</li>
+            <li>Total Final: R$ " . number_format($this->calcularTotal(), 2, ',', '.') . "</li>
+        </ul>";
     }
 }
+?>

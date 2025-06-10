@@ -1,5 +1,5 @@
 <?php
-require_once 'Aluno.php'; // <- Isso aqui é ESSENCIAL
+require_once 'Aluno.php';
 ?>
 
 <!DOCTYPE html>
