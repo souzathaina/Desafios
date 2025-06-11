@@ -41,9 +41,12 @@ class Pedido
 
     public function calcularDesconto(): float
     {
-        return $this->clientePremium ? $this->calcularTotalBruto() * 0.10 : 0;
+        if( $this->clientePremium =1){
+           return $this->calcularTotalBruto() * 0.10 ;
+    }else{
+        return 0;
     }
-
+    }
     public function calcularImposto(): float
     {
         return $this->calcularTotalBruto() * 0.08;
