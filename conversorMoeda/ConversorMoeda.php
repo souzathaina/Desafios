@@ -8,7 +8,7 @@ class ConversorMoeda
     public function __construct(float $valorReais, string $moedaDestino, float $cotacaoAtual)
     {
         $this->valorReais = $valorReais;
-        $this->moedaDestino = strtoupper($moedaDestino); // Converte para maiúsculas (USD/EUR)
+        $this->moedaDestino = strtoupper($moedaDestino); 
         $this->cotacaoAtual = $cotacaoAtual;
     }
 
@@ -17,7 +17,7 @@ class ConversorMoeda
         if ($this->moedaDestino === "USD" || $this->moedaDestino === "EUR") {
             return $this->valorReais / $this->cotacaoAtual;
         } else {
-            return 0; // Retorno caso moeda inválida
+            return 0; 
         }
     }
 

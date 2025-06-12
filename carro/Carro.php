@@ -54,7 +54,7 @@ class Carro
             return "Não precisa realizar;";
         }
     }
-    public function exibirDetalhes($precoCombustivel): string
+    public function exibirDados($precoCombustivel): string
     {
         return "
         <ul>

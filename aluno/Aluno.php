@@ -20,10 +20,11 @@ class Aluno
     {
         return "Aluno: {$this->nome}";
     }
-public function getDisciplina()  {
-    return "Disciplina: {$this->disciplina}";
-    
-}
+    public function getDisciplina()
+    {
+        return "Disciplina: {$this->disciplina}";
+
+    }
     public function mediaNota(): float
     {
         return ($this->nota1 + $this->nota2 + $this->nota3) / 3;
@@ -51,3 +52,4 @@ public function getDisciplina()  {
         </ul>";
     }
 }
+?>

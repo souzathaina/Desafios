@@ -3,7 +3,6 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="stylesheet" href="./styles/style.css">
     <meta charset="UTF-8">
     <title>Cadastro de Funcionário</title>
 </head>

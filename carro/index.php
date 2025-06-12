@@ -47,7 +47,7 @@
 
         $pedido = new Carro($modelo, $combustivel, $tanque, $consumo, $kmRodado);
         echo "<h3>Resultado:</h3>";
-        echo $pedido->exibirDetalhes($precoCombustivel);
+        echo $pedido->exibirDados($precoCombustivel);
     }
     ?>
 </body>

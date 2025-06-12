@@ -6,12 +6,13 @@ class Produto
     private int $quantidadeEstoque;
     private float $valorUnitario;
 
-    public function __construct(string $nome, int $quantidadeEstoque, $valorUnitario)
+    public function __construct(string $nome, int $quantidadeEstoque, float $valorUnitario)
     {
         $this->nome = $nome;
         $this->quantidadeEstoque = $quantidadeEstoque;
         $this->valorUnitario = $valorUnitario;
     }
+
     public function getNome(): string
     {
         return $this->nome;
@@ -27,23 +28,26 @@ class Produto
         return $this->valorUnitario;
     }
 
-    public function entradaEstoque($entradaEstoque)
+    public function entradaEstoque(int $quantidade): void
     {
-        return $this->quantidadeEstoque + $entradaEstoque;
+        $this->quantidadeEstoque += $quantidade;
     }
 
-    public function saidaEstoque(int $quantidadeEstoque)
+    public function saidaEstoque(int $quantidade): string
     {
-        if ($quantidadeEstoque > $this->quantidadeEstoque) {
+        if ($quantidade > $this->quantidadeEstoque) {
             return "Erro: quantidade insuficiente no estoque";
         } else {
-            return "saida realizada";
+            $this->quantidadeEstoque -= $quantidade;
+            return "Saída realizada com sucesso";
         }
     }
-    public function calcularValorEstoque()
+
+    public function calcularValorEstoque(): float
     {
         return $this->quantidadeEstoque * $this->valorUnitario;
     }
+
     public function exibirDetalhes(): string
     {
         return "
@@ -53,7 +57,6 @@ class Produto
             <li>Valor Unitário: R$ " . number_format($this->getValorUnitario(), 2, ',', '.') . "</li>
             <li>Valor Total em Estoque: R$ " . number_format($this->calcularValorEstoque(), 2, ',', '.') . "</li>
         </ul>";
-
     }
 }
 ?>
